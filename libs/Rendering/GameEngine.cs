@@ -49,9 +49,6 @@ public sealed class GameEngine
         return _focusedObject;
     }
 
-    // Fixed Bug:
-    // Checked endGame() by comparing the amount of Box/Target collisions to the amount of Targets.
-    // Removed AmountOfBoxes variable everywhere, because it's not needed anymore.
     public bool endGame()
     {
         var Targets = gameObjects.OfType<Target>();
@@ -74,10 +71,9 @@ public sealed class GameEngine
     {
         // Added for proper display of game characters
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        // Console.WriteLine("issue isnt here");
         dynamic gameData = FileHandler.ReadJson(SavedGame);
-        // First level gets loaded at beginning
         
+        // First level gets loaded at beginning
         var Level = gameData.First;
         if (!SavedGame)
         {
@@ -89,16 +85,16 @@ public sealed class GameEngine
                 case (2):
                     Level = gameData.Second;
                     break;
-                case (3):
-                    Level = gameData.Third;
-                    break;
+                // case (3):
+                //     Level = gameData.Third;
+                //     break;
                 default: 
                     return;
             }
             
         }
 
-        gameObjects.Clear(); // clear all objects before rendering new level
+        gameObjects.Clear(); // Clear all objects before rendering new level
         map.MapWidth = gameData.map.width;
         map.MapHeight = gameData.map.height;
 
@@ -121,7 +117,12 @@ public sealed class GameEngine
     {
         //Clean the map
         Console.Clear();
-        Console.WriteLine($"Level: {currentLevel}");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine($"          Level: {currentLevel}");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("");
         map.Initialize();
 
         PlaceGameObjects();
@@ -139,6 +140,7 @@ public sealed class GameEngine
         // Checks if the current level is anything but the last
         if (endGame() == false && currentLevel != 2) 
         {
+            Console.WriteLine("");
             Console.WriteLine("You completed the level!");
             Console.WriteLine("Press Enter to get to the next level!");
         }
@@ -168,7 +170,7 @@ public sealed class GameEngine
     public void Undo()
     {
         // Only step back possible
-        //TODO: fix bug where the box will still go to prev position even if it didnt move in current move
+        // TO-DO: fix bug where the box will still go to prev position even if it didnt move in current move
         foreach (var gameObject in gameObjects)
         {
             gameObject.PosX = gameObject.GetPrevPosX();

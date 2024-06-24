@@ -12,8 +12,8 @@ public class Map {
 
 
     public Map () {
-        _mapWidth = 30;
-        _mapHeight = 8;
+        _mapWidth = 28;
+        _mapHeight = 10;
         RepresentationalLayer = new char[_mapHeight, _mapWidth];
         GameObjectLayer = new GameObject[_mapHeight, _mapWidth];
         // mapArray = new GameObject[_mapWidth, _mapHeight];

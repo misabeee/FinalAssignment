@@ -25,7 +25,8 @@ class Program
             if (engine.currentLevel == 2 && engine.endGame() == false)
             {
                 engine.Render();
-                Console.WriteLine("Game finished. All levels mastered!");
+                Console.WriteLine("");
+                Console.WriteLine("You've made it. All levels mastered!");
                 break;
             }
         }

@@ -9,7 +9,6 @@ public class Player : GameObject {
         Type = GameObjectType.Player;
         CharRepresentation = '☻';
         Color = ConsoleColor.DarkYellow;
-
     }
 
     public static Player Instance {
@@ -33,6 +32,8 @@ public class Player : GameObject {
         // GameObject nextType = map.Get(PosX + dx, PosY + dy).GetType();
         if(PotentialBox.Type == GameObjectType.Obstacle) return; 
         
+        // Can't run over it -> Interact with NPC
+        if (PotentialBox.Type == GameObjectType.NPC) return;
         
         if(PotentialBox.Type == GameObjectType.Box){
             GameObject? NextObject= map.Get(goToY +dy, goToX +dx);

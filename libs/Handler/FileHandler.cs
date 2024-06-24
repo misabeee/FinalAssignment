@@ -17,12 +17,12 @@ public static class FileHandler
 
     private static void Initialize(bool loadSavedGameBool)
     {
-        if(loadSavedGameBool){
+        if (loadSavedGameBool) {
             if(Environment.GetEnvironmentVariable(envVar_Saved) != null){
             filePath = Environment.GetEnvironmentVariable(envVar_Saved);
             Console.WriteLine("Loading saved game");
             }
-        }else{
+        } else {
             if(Environment.GetEnvironmentVariable(envVar) != null){
             filePath = Environment.GetEnvironmentVariable(envVar);
             Console.WriteLine("Loading new game");
@@ -61,8 +61,8 @@ public static class FileHandler
         {
             map = new
             {
-                width = 10,
-                height = 8
+                width = 28,
+                height = 10
             },
             First = new
             {
