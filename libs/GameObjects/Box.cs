@@ -9,7 +9,16 @@ public class Box : GameObject
     {
         this.gameObjectFactory = (GameEngine.Instance.gameObjectFactory as GameObjectFactory);
         Type = GameObjectType.Player;
-        CharRepresentation = '○';
+
+        if (GameEngine.Instance.currentLevel == 1)
+        {
+            CharRepresentation = '★';
+        }
+        else if (GameEngine.Instance.currentLevel == 2)
+        {
+            CharRepresentation = '♫';
+        }
+
         Color = ConsoleColor.DarkGreen;
     }
 

@@ -961,7 +961,13 @@
           "Type": 0,
           "Color": 5,
           "PosX": 3,
-          "PosY": 1
+          "PosY": 2
+        },
+        {
+          "Type": 5,
+          "Color": 5,
+          "PosX": 4,
+          "PosY": 3
         }
   ]}
 }

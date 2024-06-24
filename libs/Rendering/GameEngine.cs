@@ -70,29 +70,27 @@ public sealed class GameEngine
     public void Setup(bool SavedGame)
     {
         // Added for proper display of game characters
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-        dynamic gameData = FileHandler.ReadJson(SavedGame);
-        
-        // First level gets loaded at beginning
-        var Level = gameData.First;
-        if (!SavedGame)
-        {
-            switch (currentLevel)
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            dynamic gameData = FileHandler.ReadJson(SavedGame);
+
+            // First level gets loaded at beginning
+            var Level = gameData.First;
+            if (!SavedGame)
             {
-            case (1):
-                    Level = gameData.First;
-                    break;
-                case (2):
-                    Level = gameData.Second;
-                    break;
-                // case (3):
-                //     Level = gameData.Third;
-                //     break;
-                default: 
-                    return;
+                switch (currentLevel)
+                {
+                    case (1):
+                        Level = gameData.First;
+                        AddGameObject(new NPC(6, 3, "Level1_NPC"));
+                        break;
+                    case (2):
+                        Level = gameData.Second;
+                        AddGameObject(new NPC(4, 3, "Level2_NPC"));
+                        break;
+                    default:
+                        return;
+                }
             }
-            
-        }
 
         gameObjects.Clear(); // Clear all objects before rendering new level
         map.MapWidth = gameData.map.width;
@@ -288,5 +286,46 @@ public sealed class GameEngine
         Console.WriteLine("");
         Console.WriteLine("Press Enter to return to the main menu.");
         Console.ReadLine();
+    }
+
+    public string GetInteractionText(string identifier)
+    {
+        if (identifier == null)
+        {
+            Console.WriteLine("Error: Identifier cannot be null.");
+            return "Error: Identifier cannot be null.";
+        }
+
+        string jsonData;
+        try
+        {
+            jsonData = File.ReadAllText("../Interaction.json");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading interaction file: " + ex.Message);
+            return "Error reading interaction text.";
+        }
+
+        Dictionary<string, string> interactionData;
+        try
+        {
+            interactionData = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonData);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error deserializing interaction file: " + ex.Message);
+            return "Error deserializing interaction text.";
+        }
+
+        if (interactionData.ContainsKey(identifier))
+        {
+            return interactionData[identifier];
+        }
+        else
+        {
+            Console.WriteLine($"Error: No interaction text found for identifier '{identifier}'.");
+            return $"Error: No interaction text found for identifier '{identifier}'.";
+        }
     }
 }

@@ -4,7 +4,7 @@ public class Target : GameObject {
 
     public Target () : base(){
         Type = GameObjectType.Player;
-        CharRepresentation = '*';
+        CharRepresentation = 'o';
         Color = ConsoleColor.DarkGreen;
     }
 }
