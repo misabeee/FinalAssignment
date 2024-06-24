@@ -8,7 +8,9 @@ class Program
         Console.CursorVisible = false;
         var engine = GameEngine.Instance;
         var inputHandler = InputHandler.Instance;
-        engine.Setup(false);
+
+        // Show the main menu
+        engine.MainMenu();
 
         // Main game loop
         while (true)
@@ -18,8 +20,9 @@ class Program
             // Handle keyboard input
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             inputHandler.Handle(keyInfo);
+
             // Checks if it's the last level
-            if (engine.currentLevel == 3 && engine.endGame() == false)
+            if (engine.currentLevel == 2 && engine.endGame() == false)
             {
                 engine.Render();
                 Console.WriteLine("Game finished. All levels mastered!");

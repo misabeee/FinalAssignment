@@ -13,7 +13,6 @@ public class GameObject : IGameObject, IMovement
 
     public GameObjectType Type;
 
-    
     public GameObject() {
         this._posX = 5;
         this._posY = 5;
@@ -76,7 +75,6 @@ public class GameObject : IGameObject, IMovement
         _prevPosX = value;
     }
   
-
     public virtual void Move(int dx, int dy) {
         _prevPosX = _posX;
         _prevPosY = _posY;

@@ -2,7 +2,6 @@ namespace libs;
 
 public sealed class InputHandler
 {
-
     private static InputHandler? _instance;
     private GameEngine engine;
 
@@ -53,15 +52,14 @@ public sealed class InputHandler
                 case ConsoleKey.Enter:
                     engine.TryLoadNextLevel();
                     break;
-
+                // Key for saving game
                 case ConsoleKey.S:
                     engine.SaveMap();
                     break;
-
+                // Key for loading game
                 case ConsoleKey.L:
                     engine.loadSavedGame();
                     break;
-
                 default:
                     break;
             }

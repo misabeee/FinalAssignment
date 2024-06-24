@@ -2,7 +2,6 @@ namespace libs;
 
 public class Box : GameObject
 {
-
     private GameObjectFactory gameObjectFactory;
 
     public Map map = GameEngine.Instance.GetMap();
@@ -13,7 +12,6 @@ public class Box : GameObject
         CharRepresentation = '○';
         Color = ConsoleColor.DarkGreen;
     }
-
 
     public override void Move(int dx, int dy)
     {

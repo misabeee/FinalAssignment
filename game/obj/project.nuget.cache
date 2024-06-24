@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "v/LLEmKBLq5UWOaVEpll2Etaej22Lzaxy3abrOyBJp/8tgHFeumhvayzyrQM5NfkJ1fVWkzwiF/wTLQnU64uvw==",
+  "dgSpecHash": "Nrvt/lFdUpgqp8Irs2+IUo/0FsvdDB7kj/mB6Svh8KcMpF1ICom7ScqDSoxBGV7fJ5sceA6OuCzK6+MiJEKZmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hesha\\OneDrive\\St polten Assignments\\Yr2. Second Semester\\C# development\\ChessEngine\\SokobanGame\\game\\game.csproj",
+  "projectFilePath": "C:\\Users\\mila2\\Desktop\\FinalAssignment\\game\\game.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hesha\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\mila2\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

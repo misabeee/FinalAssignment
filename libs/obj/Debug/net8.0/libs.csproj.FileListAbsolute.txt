@@ -75,3 +75,16 @@ C:\Users\andre\OneDrive\Desktop\UNI\C#\GroupGame\SokobanGame\libs\obj\Debug\net8
 C:\Users\andre\OneDrive\Desktop\UNI\C#\GroupGame\SokobanGame\libs\obj\Debug\net8.0\refint\libs.dll
 C:\Users\andre\OneDrive\Desktop\UNI\C#\GroupGame\SokobanGame\libs\obj\Debug\net8.0\libs.pdb
 C:\Users\andre\OneDrive\Desktop\UNI\C#\GroupGame\SokobanGame\libs\obj\Debug\net8.0\ref\libs.dll
+C:\Users\mila2\Desktop\FinalAssignment\libs\bin\Debug\net8.0\libs.deps.json
+C:\Users\mila2\Desktop\FinalAssignment\libs\bin\Debug\net8.0\libs.dll
+C:\Users\mila2\Desktop\FinalAssignment\libs\bin\Debug\net8.0\libs.pdb
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.csproj.AssemblyReference.cache
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.AssemblyInfoInputs.cache
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.AssemblyInfo.cs
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.csproj.CoreCompileInputs.cache
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.sourcelink.json
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.dll
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\refint\libs.dll
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\libs.pdb
+C:\Users\mila2\Desktop\FinalAssignment\libs\obj\Debug\net8.0\ref\libs.dll

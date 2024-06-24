@@ -54,8 +54,6 @@ public static class FileHandler
         }
     }
 
-
-
     public static void SaveJson(List<GameObject> gameObjects, int currentLevel)
     {
         File.WriteAllText("SavedGame.json", string.Empty);

@@ -55,19 +55,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hesha\\.nuget\\packages\\": {}
+    "C:\\Users\\mila2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hesha\\OneDrive\\St polten Assignments\\Yr2. Second Semester\\C# development\\ChessEngine\\SokobanGame\\libs\\libs.csproj",
+      "projectUniqueName": "C:\\Users\\mila2\\Desktop\\FinalAssignment\\libs\\libs.csproj",
       "projectName": "libs",
-      "projectPath": "C:\\Users\\hesha\\OneDrive\\St polten Assignments\\Yr2. Second Semester\\C# development\\ChessEngine\\SokobanGame\\libs\\libs.csproj",
-      "packagesPath": "C:\\Users\\hesha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hesha\\OneDrive\\St polten Assignments\\Yr2. Second Semester\\C# development\\ChessEngine\\SokobanGame\\libs\\obj\\",
+      "projectPath": "C:\\Users\\mila2\\Desktop\\FinalAssignment\\libs\\libs.csproj",
+      "packagesPath": "C:\\Users\\mila2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mila2\\Desktop\\FinalAssignment\\libs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hesha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\mila2\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -117,7 +117,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -74,7 +74,7 @@ public sealed class GameEngine
     {
         // Added for proper display of game characters
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Console.WriteLine("issue isnt here");
+        // Console.WriteLine("issue isnt here");
         dynamic gameData = FileHandler.ReadJson(SavedGame);
         // First level gets loaded at beginning
         
@@ -137,7 +137,7 @@ public sealed class GameEngine
         }
 
         // Checks if the current level is anything but the last
-        if (endGame() == false && currentLevel != 3) 
+        if (endGame() == false && currentLevel != 2) 
         {
             Console.WriteLine("You completed the level!");
             Console.WriteLine("Press Enter to get to the next level!");
@@ -214,10 +214,77 @@ public sealed class GameEngine
     // Increase currentLevel if Level is finished and next Level exists  
     public void TryLoadNextLevel()
     {
-        if ((endGame() == false) && (currentLevel < 3))
+        if ((endGame() == false) && (currentLevel < 2))
         {
             currentLevel++;
             Setup(false);
         }
+    }
+
+    // Main Menu
+    public void MainMenu()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("    Welcome to the Game!");
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("");
+            Console.WriteLine("    1. Start New Game");
+            Console.WriteLine("    2. Load Saved Game");
+            Console.WriteLine("    3. Instructions");
+            Console.WriteLine("    4. Exit");
+            Console.WriteLine("");
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("");
+            Console.Write("    Select an option: ");
+
+            var choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    currentLevel = 1;
+                    Setup(false);
+                    return;
+                case "2":
+                    loadSavedGame();
+                    return;
+                case "3":
+                    DisplayInstructions();
+                    break;
+                case "4":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Invalid option, please try again.");
+                    break;
+            }
+        }
+    }
+
+    // Game Instructions
+    private void DisplayInstructions()
+    {
+        Console.Clear();
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("        How to Play:");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("");
+        Console.WriteLine("1. Use arrow keys to move.");
+        Console.WriteLine("2. Push all the boxes onto the target spots to complete the level.");
+        Console.WriteLine("3. Press 'Z' to undo your last move.");
+        Console.WriteLine("4. Press 'S' to save the game.");
+        Console.WriteLine("5. Press 'L' to load a saved game.");
+        Console.WriteLine("");
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("");
+        Console.WriteLine("Press Enter to return to the main menu.");
+        Console.ReadLine();
     }
 }
