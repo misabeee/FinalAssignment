@@ -10,8 +10,8 @@ public sealed class GameEngine
 {
     private static GameEngine? _instance;
     public IGameObjectFactory gameObjectFactory;
+    private Stack<GameState> gameStates = new Stack<GameState>();
 
-    // Current level when we start is 1
     public int currentLevel = 1;
 
     public static GameEngine Instance
@@ -28,7 +28,6 @@ public sealed class GameEngine
 
     private GameEngine()
     {
-        //INIT PROPS HERE IF NEEDED
         gameObjectFactory = new GameObjectFactory();
     }
 
@@ -37,7 +36,6 @@ public sealed class GameEngine
     private Map map = new Map();
 
     private List<GameObject> gameObjects = new List<GameObject>();
-
 
     public Map GetMap()
     {
@@ -59,9 +57,10 @@ public sealed class GameEngine
         {
             foreach (var Box in Boxes)
             {
-                if (Box.PosX == Target.PosX && Box.PosY == Target.PosY) {
+                if (Box.PosX == Target.PosX && Box.PosY == Target.PosY)
+                {
                     Hits++;
-                }   
+                }
             }
         }
         return (Hits != Targets.Count());
@@ -69,30 +68,28 @@ public sealed class GameEngine
 
     public void Setup(bool SavedGame)
     {
-        // Added for proper display of game characters
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            dynamic gameData = FileHandler.ReadJson(SavedGame);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        dynamic gameData = FileHandler.ReadJson(SavedGame);
 
-            // First level gets loaded at beginning
-            var Level = gameData.First;
-            if (!SavedGame)
+        var Level = gameData.First;
+        if (!SavedGame)
+        {
+            switch (currentLevel)
             {
-                switch (currentLevel)
-                {
-                    case (1):
-                        Level = gameData.First;
-                        AddGameObject(new NPC(6, 3, "Level1_NPC"));
-                        break;
-                    case (2):
-                        Level = gameData.Second;
-                        AddGameObject(new NPC(4, 3, "Level2_NPC"));
-                        break;
-                    default:
-                        return;
-                }
+                case (1):
+                    Level = gameData.First;
+                    AddGameObject(new NPC(6, 3, "Level1_NPC"));
+                    break;
+                case (2):
+                    Level = gameData.Second;
+                    AddGameObject(new NPC(4, 3, "Level2_NPC"));
+                    break;
+                default:
+                    return;
             }
+        }
 
-        gameObjects.Clear(); // Clear all objects before rendering new level
+        gameObjects.Clear();
         map.MapWidth = gameData.map.width;
         map.MapHeight = gameData.map.height;
 
@@ -108,12 +105,10 @@ public sealed class GameEngine
         }
 
         _focusedObject = gameObjects.OfType<Player>().First();
-
     }
 
     public void Render()
     {
-        //Clean the map
         Console.Clear();
         Console.WriteLine("----------------------------");
         Console.WriteLine("----------------------------");
@@ -125,7 +120,6 @@ public sealed class GameEngine
 
         PlaceGameObjects();
 
-        //Render the map
         for (int i = 0; i < map.MapHeight; i++)
         {
             for (int j = 0; j < map.MapWidth; j++)
@@ -135,8 +129,7 @@ public sealed class GameEngine
             Console.WriteLine();
         }
 
-        // Checks if the current level is anything but the last
-        if (endGame() == false && currentLevel != 2) 
+        if (endGame() == false && currentLevel != 2)
         {
             Console.WriteLine("");
             Console.WriteLine("You completed the level!");
@@ -144,8 +137,9 @@ public sealed class GameEngine
         }
     }
 
-    public void SaveMap(){
-    List<GameObject> savedMap = new List<GameObject>();
+    public void SaveMap()
+    {
+        List<GameObject> savedMap = new List<GameObject>();
 
         for (int i = 0; i < map.MapHeight; i++)
         {
@@ -161,22 +155,41 @@ public sealed class GameEngine
         FileHandler.SaveJson(savedMap, currentLevel);
     }
 
-    public void loadSavedGame(){
+    public void loadSavedGame()
+    {
         Setup(true);
+    }
+
+    public void SaveState()
+    {
+        var state = new GameState
+        {
+            GameObjects = gameObjects.Select(obj => obj.Clone()).ToList(),
+            PlayerX = _focusedObject.PosX,
+            PlayerY = _focusedObject.PosY
+        };
+        gameStates.Push(state);
+        Console.WriteLine("Game state saved.");
     }
 
     public void Undo()
     {
-        // Only step back possible
-        // TO-DO: fix bug where the box will still go to prev position even if it didnt move in current move
-        foreach (var gameObject in gameObjects)
+        if (gameStates.Count > 0)
         {
-            gameObject.PosX = gameObject.GetPrevPosX();
-            gameObject.PosY = gameObject.GetPrevPosY();
+            var state = gameStates.Pop();
+            gameObjects = state.GameObjects.Select(obj => obj.Clone()).ToList();
+            _focusedObject = gameObjects.OfType<Player>().First();
+            _focusedObject.PosX = state.PlayerX;
+            _focusedObject.PosY = state.PlayerY;
+            Console.WriteLine($"Undoing move: Player moving to ({state.PlayerX}, {state.PlayerY})");
+            Render();
+        }
+        else
+        {
+            Console.WriteLine("No moves to undo.");
         }
     }
 
-    // Method to create GameObject using the factory from clients
     public GameObject CreateGameObject(dynamic obj)
     {
         return gameObjectFactory.CreateGameObject(obj);
@@ -211,7 +224,6 @@ public sealed class GameEngine
         }
     }
 
-    // Increase currentLevel if Level is finished and next Level exists  
     public void TryLoadNextLevel()
     {
         if ((endGame() == false) && (currentLevel < 2))
@@ -221,7 +233,6 @@ public sealed class GameEngine
         }
     }
 
-    // Main Menu
     public void MainMenu()
     {
         while (true)
@@ -266,7 +277,6 @@ public sealed class GameEngine
         }
     }
 
-    // Game Instructions
     private void DisplayInstructions()
     {
         Console.Clear();

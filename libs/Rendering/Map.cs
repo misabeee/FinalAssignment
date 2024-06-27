@@ -1,50 +1,35 @@
 namespace libs;
 using Newtonsoft.Json;
 
-public class Map {
+public class Map
+{
     private char[,] RepresentationalLayer;
     private GameObject?[,] GameObjectLayer;
 
     private int _mapWidth;
     private int _mapHeight;
 
-    // public GameObject?[,] mapArray;
-
-
-    public Map () {
+    public Map()
+    {
         _mapWidth = 28;
         _mapHeight = 10;
         RepresentationalLayer = new char[_mapHeight, _mapWidth];
         GameObjectLayer = new GameObject[_mapHeight, _mapWidth];
-        // mapArray = new GameObject[_mapWidth, _mapHeight];
     }
 
-    public Map (int width, int height) {
+    public Map(int width, int height)
+    {
         _mapWidth = width;
         _mapHeight = height;
         RepresentationalLayer = new char[_mapHeight, _mapWidth];
         GameObjectLayer = new GameObject[_mapHeight, _mapWidth];
-        // mapArray = new GameObject[_mapWidth, _mapHeight];
     }
-
-    // public void saveMap(){
-    //     for (int x = 0; x < _mapWidth; x++){
-    //         for (int y = 0; y < _mapHeight; y++){
-    //             GameObject? curr = Get(y, x);
-
-    //             // curr.PosX = curr.GetPrevPosX();
-    //             // curr.PosY = curr.GetPrevPosY();
-    //             mapArray[x, y] = curr;
-    //         }
-    //     }
-    // }
 
     public void Initialize()
     {
         RepresentationalLayer = new char[_mapHeight, _mapWidth];
         GameObjectLayer = new GameObject[_mapHeight, _mapWidth];
 
-        // Initialize the map with some default values
         for (int i = 0; i < GameObjectLayer.GetLength(0); i++)
         {
             for (int j = 0; j < GameObjectLayer.GetLength(1); j++)
@@ -56,38 +41,42 @@ public class Map {
 
     public int MapWidth
     {
-        get { return _mapWidth; } // Getter
-        set { _mapWidth = value; Initialize();} // Setter
+        get { return _mapWidth; }
+        set { _mapWidth = value; Initialize(); }
     }
 
     public int MapHeight
     {
-        get { return _mapHeight; } // Getter
-        set { _mapHeight = value; Initialize();} // Setter
+        get { return _mapHeight; }
+        set { _mapHeight = value; Initialize(); }
     }
 
-    public GameObject Get(int x, int y){
+    public GameObject Get(int x, int y)
+    {
         return GameObjectLayer[x, y];
     }
 
-    public void Set(GameObject gameObject){
-        GameObjectType type = gameObject.Type;
+    public void Set(GameObject gameObject)
+    {
         int posY = gameObject.PosY;
         int posX = gameObject.PosX;
         int prevPosY = gameObject.GetPrevPosY();
         int prevPosX = gameObject.GetPrevPosX();
-        
-        if (prevPosX >= 0 && prevPosX <= _mapWidth &&
-                prevPosY >= 0 && prevPosY <= _mapHeight)
+
+        if (prevPosX >= 0 && prevPosX < _mapWidth && prevPosY >= 0 && prevPosY < _mapHeight)
         {
-            GameObjectLayer[prevPosY, prevPosX] = new Floor();        
+            GameObjectLayer[prevPosY, prevPosX] = new Floor();
         }
 
-        if (posX >= 0 && posX < _mapWidth &&
-                posY >= 0 && posY < _mapHeight)
+        if (posX >= 0 && posX < _mapWidth && posY >= 0 && posY < _mapHeight)
         {
             GameObjectLayer[posY, posX] = gameObject;
             RepresentationalLayer[gameObject.PosY, gameObject.PosX] = gameObject.CharRepresentation;
         }
+    }
+
+    public GameObject?[,] GetGameObjectLayer()
+    {
+        return GameObjectLayer;
     }
 }
