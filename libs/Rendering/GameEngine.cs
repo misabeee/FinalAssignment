@@ -169,7 +169,6 @@ public sealed class GameEngine
             PlayerY = _focusedObject.PosY
         };
         gameStates.Push(state);
-        Console.WriteLine("Game state saved.");
     }
 
     public void Undo()
