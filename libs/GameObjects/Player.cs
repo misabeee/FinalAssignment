@@ -35,7 +35,7 @@ public class Player : GameObject
 
         if (nextObject != null && nextObject.Type == GameObjectType.NPC)
         {
-            string npcIdentifier = $"NPC_{goToX}_{goToY}"; // Example identifier format
+            string npcIdentifier = $"NPC_{goToX}_{goToY}"; // Get Position of Player
             string interactionText = GameEngine.Instance.GetInteractionText(npcIdentifier);
 
             Console.WriteLine("");

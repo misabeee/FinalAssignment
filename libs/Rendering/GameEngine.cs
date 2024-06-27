@@ -47,6 +47,8 @@ public sealed class GameEngine
         return _focusedObject;
     }
 
+    // Check if every "target" has a "box" on it 
+    // If every "target" has a "box" -> level done
     public bool endGame()
     {
         var Targets = gameObjects.OfType<Target>();
@@ -82,7 +84,7 @@ public sealed class GameEngine
                     break;
                 case (2):
                     Level = gameData.Second;
-                    AddGameObject(new NPC(4, 3, "Level2_NPC"));
+                    AddGameObject(new NPC(1, 3, "Level2_NPC"));
                     break;
                 default:
                     return;
@@ -169,7 +171,6 @@ public sealed class GameEngine
             PlayerY = _focusedObject.PosY
         };
         gameStates.Push(state);
-        Console.WriteLine("Game state saved.");
     }
 
     public void Undo()
@@ -181,7 +182,7 @@ public sealed class GameEngine
             _focusedObject = gameObjects.OfType<Player>().First();
             _focusedObject.PosX = state.PlayerX;
             _focusedObject.PosY = state.PlayerY;
-            Console.WriteLine($"Undoing move: Player moving to ({state.PlayerX}, {state.PlayerY})");
+            //Console.WriteLine($"Undoing move: Player moving to ({state.PlayerX}, {state.PlayerY})");
             Render();
         }
         else
