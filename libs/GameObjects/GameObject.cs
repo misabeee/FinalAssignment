@@ -81,4 +81,20 @@ public class GameObject : IGameObject, IMovement
         _posX += dx;
         _posY += dy;
     }
+
+    public void setColor(ConsoleColor color)
+    {
+        this._color = color;
+    }
+
+    public virtual GameObject Clone()
+    {
+        return new GameObject(_posX, _posY, _color)
+        {
+            _charRepresentation = _charRepresentation,
+            _prevPosX = _prevPosX,
+            _prevPosY = _prevPosY,
+            Type = Type
+        };
+    }
 }
